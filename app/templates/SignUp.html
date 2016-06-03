@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+   <title>Yo man! Sign up now!</title>
+   <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+   <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+   <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+{% if not session.logged_in %}   
+    <div style="margin-left: 30cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
+      <a href="{{ url_for('SignIn') }}"> sign in </a>
+      <a href="{{ url_for('SignUp') }}"> &nbsp sign up </a>
+    </div>
+  </div>
+{% else %}
+  <div><a href="{{ url_for('SignOut') }}"> sign out</a></div>
+{% endif %}
+
+
+  <div style="margin-top: 0.3cm;margin-left:0.3cm;">
+    <div style = "margin-left : 10pt;margin-top:1cm;font-size:15pt;">
+      <ul class="nav nav-pills" style = "display:inline">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('AboutPage') }}">About</a></li>
+        <li><a href="{{ url_for('ContactPage') }}">Contact me</a></li>
+      </ul>
+    </div>
+  </div>
+
+<div style="margin-top:2cm; margin-left:10cm">
+<p style="text-indent:3cm;font-size:20pt">Create your personal account</p>
+<form class="form-horizontal" role="form" style="margin-top:2cm">
+   <div class="form-group">
+      <label for="firstname" class="col-sm-2 control-label">Username</label>
+      <div class="col-sm-4">
+         <input type="text" class="form-control" id="firstname" 
+            placeholder="input your username" size="3">
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="lastname" class="col-sm-2 control-label">Password</label>
+      <div class="col-sm-4">
+         <input type="text" class="form-control" id="lastname" 
+            placeholder="input your password" size="10">
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" class="btn btn-default">Create an account</button>
+      </div>
+   </div>
+</form>
+</div>
+
+</body>
+</html>

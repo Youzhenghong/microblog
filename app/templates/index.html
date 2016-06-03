@@ -1,0 +1,43 @@
+<html lang="en">
+  <head>
+     <title>MyBlog</title>
+      <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
+      <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
+      <script src="http://code.jquery.com/jquery-latest.js"></script>
+      <script src="/static/js/bootstrap.min.js"></script>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  </head>
+
+  
+{% if not session.logged_in %}   
+    <div style="margin-left: 30cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
+      <a href="{{ url_for('SignIn') }}"> sign in </a>
+      <a href="{{ url_for('SignUp') }}"> &nbsp sign up </a>
+    </div>
+  </div>
+{% else %}
+  <div><a href="{{ url_for('SignOut') }}"> sign out</a></div>
+{% endif %}
+
+
+  <div style="margin-top: 0.3cm;margin-left:0.3cm;">
+    <div style = "margin-left : 10pt;margin-top:1cm;font-size:15pt;">
+      <ul class="nav nav-pills" style = "display:inline">
+        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('AboutPage') }}">About</a></li>
+        <li><a href="{{ url_for('ContactPage') }}">Contact me</a></li>
+      </ul>
+    </div>
+  </div>
+
+
+
+<div style = "margin-left:13cm; margin-top:3cm; font-size : 13pt">
+{% for post in posts %}
+  <div><p>{{post.author.nickname}} says: <b>{{post.body}}</b></p></div>
+{% endfor %}
+</div>
+
+
+</html>
