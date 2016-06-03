@@ -19,8 +19,7 @@ def SignIn():
 @app.route('/signup')
 def SignUp():
 	return render_template("SignUp.html")
-"""
+
 @app.route('/signout')
 def SignOut():
 	return render_template("SignOut.html")
-"""

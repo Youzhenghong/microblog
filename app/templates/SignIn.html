@@ -31,19 +31,22 @@
 
 <div style="margin-top:2cm; margin-left:10cm">
 <p style="text-indent:6cm;font-size:20pt">Sign in now!</p>
-<form class="form-horizontal" role="form" style="margin-top:2cm" action="/signin/sign">
+<form method="post" class="form-horizontal" role="form" style="margin-top:2cm" action="{{ url_for('SignInNow') }}">
+  {%if warning %}
+  <p style = "color:red;fond-size:8pt;text-indent:4.5cm"> {{ warning }}
+  {% endif %} 
    <div class="form-group">
       <label for="firstname" class="col-sm-2 control-label">Username</label>
       <div class="col-sm-4">
          <input type="text" class="form-control" id="firstname" 
-            placeholder="input your username" size="3">
+            placeholder="input your username" size="3" name='username'>
       </div>
    </div>
    <div class="form-group">
       <label for="lastname" class="col-sm-2 control-label">Password</label>
       <div class="col-sm-4">
          <input type="text" class="form-control" id="lastname" 
-            placeholder="input your password" size="10">
+            placeholder="input your password" size="10"  name='password'>
       </div>
    </div>
    <div class="form-group">
