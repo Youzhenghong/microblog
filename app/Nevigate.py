@@ -1,5 +1,5 @@
 from app import app
-from flask import render_template
+from flask import render_template,redirect,url_for
 
 
 @app.route('/About')
@@ -22,4 +22,4 @@ def SignUp():
 
 @app.route('/signout')
 def SignOut():
-	return render_template("SignOut.html")
+	return redirect(url_for('SignOutNow'));

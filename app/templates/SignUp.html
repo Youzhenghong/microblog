@@ -2,22 +2,33 @@
 
 <html>
 <head>
-   <title>Yo man! Sign up now!</title>
-   <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
-   <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
-   <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <title>Yo man! Sign up now!</title>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.0/css/amazeui.min.css">
+    <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 </head>
+
 <body>
 {% if not session.logged_in %}   
-    <div style="margin-left: 30cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
-      <a href="{{ url_for('SignIn') }}"> sign in </a>
-      <a href="{{ url_for('SignUp') }}"> &nbsp sign up </a>
+<div style="margin-left: 30cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
+      <button typle="button" class="btn bnt-default bnt-sm"><a href="{{ url_for('SignIn') }}"> <i class='fa fa-sign-in'></i> sign in </a></button>
+      <button typle="button" class="btn bnt-default bnt-sm"><a href="{{ url_for('SignUp') }}"> <i class='fa fa-pencil'></i> sign up </a></button>
     </div>
-  </div>
 {% else %}
-  <div><a href="{{ url_for('SignOut') }}"> sign out</a></div>
+  <div class="btn-group open">
+    <a class="btn btn-primary" href="#"><i class="icon-user"></i> User</a>
+    <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown" href="#"><span class="icon-caret-down"></span></a>
+    <ul class="dropdown-menu">
+        <li><a href="#"><i class="icon-pencil"></i> Edit</a></li>
+        <li><a href="#"><i class="icon-trash"></i> Delete</a></li>
+        <li><a href="#"><i class="icon-ban-circle"></i> Ban</a></li>
+        <li class="divider"></li>
+        <li><a href="#"><i class="i"></i> Make admin</a></li>
+    </ul>
+  </div>
 {% endif %}
-
 
   <div style="margin-top: 0.3cm;margin-left:0.3cm;">
     <div style = "margin-left : 10pt;margin-top:1cm;font-size:15pt;">
@@ -31,19 +42,22 @@
 
 <div style="margin-top:2cm; margin-left:10cm">
 <p style="text-indent:3cm;font-size:20pt">Create your personal account</p>
-<form class="form-horizontal" role="form" style="margin-top:2cm">
+<form  class="form-horizontal" role="form" style="margin-top:2cm" action="{{ url_for('createAccount') }}" method = "post">
+  {%if warning %}
+  <p style = "color:red;fond-size:8pt;text-indent:4.5cm"> {{ warning }}
+  {% endif %} 
    <div class="form-group">
-      <label for="firstname" class="col-sm-2 control-label">Username</label>
+      <label for="firstname" class="col-sm-2 control-label"><i class="fa fa-user fa-lg"></i></label>
       <div class="col-sm-4">
          <input type="text" class="form-control" id="firstname" 
-            placeholder="input your username" size="3">
+            placeholder="input your username" size="3" name='username'>
       </div>
    </div>
    <div class="form-group">
-      <label for="lastname" class="col-sm-2 control-label">Password</label>
+      <label for="lastname" class="col-sm-2 control-label"><i class="fa fa-key fa-lg"></i></label>
       <div class="col-sm-4">
          <input type="text" class="form-control" id="lastname" 
-            placeholder="input your password" size="10">
+            placeholder="input your password" size="10"  name='password'>
       </div>
    </div>
    <div class="form-group">

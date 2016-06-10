@@ -1,15 +1,78 @@
 <html lang="en">
   <head>
-     <title>MyBlog</title>
-      <link href="/static/css/bootstrap.min.css" rel="stylesheet" media="screen">
-      <link href="/static/css/bootstrap-responsive.min.css" rel="stylesheet">
-      <script src="http://code.jquery.com/jquery-latest.js"></script>
-      <script src="/static/js/bootstrap.min.js"></script>
-      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyBlog</title>
+    <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+  	<link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+  	<link rel="stylesheet" href="http://cdn.amazeui.org/amazeui/2.7.0/css/amazeui.min.css">
+  	<script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  	<script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
 
   </head>
+<body>
+{% if not session.logged_in %}   
+<div style="margin-left: 30cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
+      <button typle="button" class="btn bnt-default bnt-sm"><a href="{{ url_for('SignIn') }}"> <i class='fa fa-sign-in'></i> sign in </a></button>
+      <button typle="button" class="btn bnt-default bnt-sm"><a href="{{ url_for('SignUp') }}"> <i class='fa fa-pencil'></i> sign up </a></button>
+    </div>
+{% else %}
+   <div class="dropdown" style="margin-left: 30cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
+      <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+        data-toggle="dropdown">
+        <i class="fa fa-user fa-fw"></i>{{session.user}}
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">
+          <i class="fa fa-archive"></i> Profile
+          </a>
+        </li>
+        
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">
+          <i class='fa fa-area-chart'></i> Statistics
+          </a>
+        </li>
+        
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">
+          <i class='fa fa-cog'></i>  Setting
+          </a>
+        </li>
+      
+        <li role="presentation" class="divider"></li>
+        <li role="presentation">
+         <a role="menuitem" tabindex="-1" href="{{ url_for('SignOut')}}"><i class="fa fa-sign-out"></i>Sign out</a>
+        </li>
+      </ul>
+    </div>
 
-  <h1><em> this is a ContactMe page </em></h1>
+{% endif %}
+
+  <div style="margin-top: 0.3cm;margin-left:0.3cm;">
+    <div style = "margin-left : 10pt;margin-top:1cm;font-size:15pt;">
+      <ul class="nav nav-pills" style = "display:inline">
+        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li><a href="{{ url_for('AboutPage') }}">About</a></li>
+        <li class="active"><a href="{{ url_for('ContactPage') }}">Contact me</a></li>
+      </ul>
+    </div>
+  </div>
+  <div style="margin-left:1cm; margin-top:2cm">
+  <h1><em> Contact me</em></h1>
+  <ul>
+  	<li><i class="fa fa-github"></i>itHub: <a href="https://github.com/youzhenghong">Youzhenghong</a>
+  	<li><i class="fa fa-google"></i>-Mail: <a href="mailto:youzhenghong1995@gmail.com">youzhenghong1995@gmail.com</a>
+  	<li><i class="fa fa-facebook"> </i>acebook: <a href="https://www.facebook.com/zhenghongyou">zhenghong you</a>
+  	<li><i class="fa fa-wechat"></i>WeChat: <a href="#">15645040395</a>
+  	<li><i class="fa fa-weibo">Weibo: <a href="http://weibo.com/u/5918903535?refer_flag=1001030102_&is_hot=1">人萌屌大</a></i>
+  </ul>
 
 
+
+  </div>
+
+
+</body>
 </html>
+
