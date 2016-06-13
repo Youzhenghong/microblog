@@ -11,51 +11,56 @@
 </head>
 <body>
 
-{% if not session.logged_in %}   
-    <div style="margin-left: 30cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
-      <button typle="button" class="btn bnt-default bnt-sm"><a href="{{ url_for('SignIn') }}"> <i class='fa fa-sign-in'></i> sign in </a></button>
+<span style="vertical-align:top;padding-left:0.4cm;padding-bottom:0.3cm">
+  <a href="{{url_for('index')}}" style="font-size:30pt;color:black;vertical-align:top">You'Blog</a>
+</span> 
+{% if not session['logged_in'] %}  
+<span style="padding-left:25cm;;font-size:13pt;vertical-align:top">
+      <button typle="button" class="btn bnt-default bnt-sm"><a href="{{ url_for('SignIn') }}"> <i class='fa fa-sign-in'></i> sign in </a>
+      </button>
       <button typle="button" class="btn bnt-default bnt-sm"><a href="{{ url_for('SignUp') }}"> <i class='fa fa-pencil'></i> sign up </a></button>
-    </div>
+</span>
 {% else %}
-    <div class="dropdown" style="margin-left: 30cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
+    <span class="dropdown" style="margin-left: 30cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
       <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
         data-toggle="dropdown">
-        {{session.user}}
+        <i class="fa fa-user fa-fw"></i>{{session['user']}}
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
         <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="#">Profile</a>
-        </li>
-        
-        <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="#">Statistics</a>
+          <a role="menuitem" tabindex="-1" href="#">
+          <i class="fa fa-archive"></i> Profile
+          </a>
         </li>
         
         <li role="presentation">
           <a role="menuitem" tabindex="-1" href="#">
-            Setting
+          <i class='fa fa-area-chart'></i> Statistics
+          </a>
+        </li>
+        
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">
+          <i class='fa fa-cog'></i>  Setting
           </a>
         </li>
       
         <li role="presentation" class="divider"></li>
         <li role="presentation">
-         <a role="menuitem" tabindex="-1" href="{{ url_for('SignOut')}}">Sign out</a>
+         <a role="menuitem" tabindex="-1" href="{{ url_for('SignOut')}}"><i class="fa fa-sign-out"></i>Sign out</a>
         </li>
       </ul>
-    </div>
+    </span>
 {% endif %}
 
-
-  <div style="margin-top: 0.3cm;margin-left:0.3cm;">
-    <div style = "margin-left : 10pt;margin-top:1cm;font-size:15pt;">
+    <div style = "margin-left:10pt;margin-top:0.5cm;font-size:15pt;">
       <ul class="nav nav-pills" style = "display:inline">
-        <li><a href="{{ url_for('index') }}">Home</a></li>
+        <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
         <li><a href="{{ url_for('AboutPage') }}">About</a></li>
         <li><a href="{{ url_for('ContactPage') }}">Contact me</a></li>
       </ul>
     </div>
-  </div>
 
 <div style="margin-top:2cm; margin-left:10cm">
 <p style="text-indent:6cm;font-size:20pt">Sign in now!</p>
@@ -67,7 +72,7 @@
       <label for="firstname" class="col-sm-2 control-label"><i class="fa fa-user fa-lg"></i></label>
       <div class="col-sm-4">
          <input type="text" class="form-control" id="firstname" 
-            placeholder="input your username" size="3" name='username'>
+            placeholder="input your username" size="10" name='username'>
       </div>
    </div>
    <div class="form-group">

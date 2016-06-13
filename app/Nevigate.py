@@ -23,3 +23,8 @@ def SignUp():
 @app.route('/signout')
 def SignOut():
 	return redirect(url_for('SignOutNow'));
+
+
+@app.route('/admin')
+def Admin():
+	return render_template('AdminSignIn.html')

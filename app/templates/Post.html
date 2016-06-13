@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Summernote</title>
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.1/summernote.js"></script>
+  <script type="text/javascript">
+    function sendData(){
+        var markupStr = $('#summernote').summernote('code');
+        ajaxreq = new XMLHHttpRequest();
+        ajaxreq.open("post", "{{ url_for('PostNewPassage') }}");
+        ajaxreq.send(markubStr);
+    }
+
+
+  </script>
+
+
+</head>
+<body>
+
+<span class="dropdown" style="margin-left: 29cm ; margin-top: 0.2cm; font-size:13pt">
+      <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
+        data-toggle="dropdown">
+        <i class="fa fa-user fa-fw"></i>admin
+        <span class="caret"></span>
+      </button>
+      <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">
+          <i class="fa fa-archive"></i> Profile
+          </a>
+        </li>
+        
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="#">
+          <i class='fa fa-area-chart'></i> Statistics
+          </a>
+        </li>
+        
+        <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="{{url_for("Post")}}">
+          <i class='fa fa-plus'></i> New Passage
+          </a>
+        </li>
+      
+        <li role="presentation" class="divider"></li>
+        <li role="presentation">
+         <a role="menuitem" tabindex="-1" href="{{ url_for('SignOut')}}"><i class="fa fa-sign-out"></i>Sign out</a>
+        </li>
+      </ul>
+</span>
+
+
+
+<div style="margin-top:3cm">
+<form method="post" class="form-horizontal col-sm-offset-2" role="form" action="{{ url_for('PostNewPassage') }}">
+   <label for="title"> title</label>
+   <div class="form-group">
+      <div class="col-sm-4">
+         <input class="form-control" type="text" name="title"
+         placeholder="input title" size="20">
+      </div>
+   </div>
+   <div class="form-group col-sm-offset-2 col-sm-10">
+      <textarea id="summernote" class="input-level-block" name="text"></textarea>
+   <div class="form-inline">
+      <div class="col-sm-2 col-sm-offset-10">
+         <button type="submit" class="btn btn-default" onclick="sendData()">Post</button>
+         <button type="button" class="btn btn-default"><a href="{{ url_for("index") }}">Leave</a></button>
+      </div>
+   </div>
+</form>
+  
+  <script type="text/javascript">
+    $('#summernote').summernote({
+      height: 300,                 // set editor height
+      minHeight: null,             // set minimum height of editor
+      maxHeight: null,             // set maximum height of editor
+      focus: true                  // set focus to editable area after initializing summernote
+    });
+  </script type="text/javascript">
+  <script>
+    $(document).ready(function() {
+    var a_content = $('#summernote').summernote('code');
+    $('#summernote').summernote({
+        height: 100,
+        minHeight: null,
+        maxHeight: null,
+        focus: true,
+        lang: 'zh-CN'
+    });
+  </script>
+  <script type="text/javascript"></script>
+</body>
+</div>
+
+</html>

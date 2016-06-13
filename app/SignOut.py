@@ -10,6 +10,12 @@ from config import DATABASE_URI,basedir
 
 @app.route('/signout', methods = ['GET', 'POST'])
 def SignOutNow():
-	session['logged_in'] = False
-	session.pop('user', None)
-	return redirect(url_for('index'))
+	if "admin" in session.keys():
+		session["admin"] = False
+		session['logged_in'] = False
+		session.pop('admin', None)
+		return redirect(url_for('index'))
+	else:
+		session['logged_in'] = False
+		session.pop('user', None)
+		return redirect(url_for('index'))

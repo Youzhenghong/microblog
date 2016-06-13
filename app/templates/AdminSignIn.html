@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Yo man! Sign in now!</title>
+  <link rel="stylesheet" href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <script src="http://apps.bdimg.com/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<div style="margin-top:4.5cm; margin-left:10cm">
+<p style="text-indent:6cm;font-size:20pt">Hello Admin!</p>
+<form method="post" class="form-horizontal" role="form" style="margin-top:2cm" action="{{ url_for('AdminSignInNow') }}">
+  {%if warning %}
+  <p style = "color:red;fond-size:8pt;text-indent:4.5cm"> {{ warning }}
+  {% endif %} 
+   <div class="form-group">
+      <label for="firstname" class="col-sm-2 control-label"><i class="fa fa-user fa-lg"></i></label>
+      <div class="col-sm-4">
+         <input type="text" class="form-control" id="firstname" 
+            placeholder="input your username" size="3" name='username'>
+      </div>
+   </div>
+   <div class="form-group">
+      <label for="lastname" class="col-sm-2 control-label"><i class="fa fa-key fa-lg"></i></label>
+      <div class="col-sm-4">
+         <input type="text" class="form-control" id="lastname" 
+            placeholder="input your password" size="10"  name='password'>
+      </div>
+   </div>
+   <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+         <button type="submit" class="btn btn-default">Sign in</button>
+      </div>
+   </div>
+</form>
+</div>
+
+</body>
+</html>
