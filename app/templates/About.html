@@ -24,9 +24,15 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+         <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="{{url_for('Post')}}">
+          <i class='fa fa-plus'></i> New Passage
+          </a>
+        </li>
+      
         <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="#">
-          <i class="fa fa-archive"></i> Profile
+          <a role="menuitem" tabindex="-1" href="{{ url_for('Edit') }}">
+          <i class="fa fa-archive"></i> Edit
           </a>
         </li>
         
@@ -36,12 +42,7 @@
           </a>
         </li>
         
-        <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="{{url_for("Post")}}">
-          <i class='fa fa-plus'></i> New Passage
-          </a>
-        </li>
-      
+       
         <li role="presentation" class="divider"></li>
         <li role="presentation">
          <a role="menuitem" tabindex="-1" href="{{ url_for('SignOut')}}"><i class="fa fa-sign-out"></i>Sign out</a>

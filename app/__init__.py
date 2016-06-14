@@ -12,4 +12,4 @@ from app import SignUp
 from app import SignOut
 from app import Nevigate
 from app import Post
-
+from app import Edit

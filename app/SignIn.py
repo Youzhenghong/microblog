@@ -3,7 +3,7 @@ from app import app
 import sqlite3
 from flask import request
 from flask import session	
-from flask import render_template
+from flask import render_template,redirect,url_for
 from config import DATABASE_URI,basedir, admin, adminPassword
 
 
@@ -34,7 +34,7 @@ def SignInNow():
 	if valid_account(username, password):
 		session['logged_in'] = True
 		session['user'] = username
-		return render_template("index.html")
+		return redirect(url_for("index"))
 	else:
 		return render_template("SignIn.html", warning = "invalid account or password")
 
@@ -45,4 +45,4 @@ def AdminSignInNow():
 	password = unicode(request.form['password'])
 	if username == admin and password == adminPassword:
 		session["admin"] = True
-		return render_template("index.html")
+		return redirect(url_for("index"))

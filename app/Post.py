@@ -4,7 +4,7 @@ import sqlite3
 import time
 from flask import request
 from flask import session	
-from flask import render_template
+from flask import render_template,redirect,url_for
 from config import DATABASE_URI,basedir, admin, adminPassword
 from flask import request
 from flask import session
@@ -46,6 +46,7 @@ def addNewPassage(title, text):
 	db.close()
 
 
+
 @app.route('/admin/post', methods = ['GET', 'POST'])
 def Post():
 	return render_template("Post.html")
@@ -55,6 +56,6 @@ def PostNewPassage():
 	title = request.form['title']
 	text = request.form['text']
 	addNewPassage(title, text)
-	return "post sucessfully"
+	return redirect(url_for('index', display=True, title=title, text=text))
 
 

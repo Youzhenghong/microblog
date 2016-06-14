@@ -15,16 +15,22 @@
 </span> 
 {% if session['admin'] %}
 
- <span class="dropdown" style="margin-left: 25cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
+  <span class="dropdown" style="margin-left: 25cm ; margin-top: 0.2cm; font-size:13pt;display:inline">
       <button type="button" class="btn dropdown-toggle" id="dropdownMenu1" 
         data-toggle="dropdown">
         <i class="fa fa-user fa-fw"></i>admin
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+         <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="{{url_for('Post')}}">
+          <i class='fa fa-plus'></i> New Passage
+          </a>
+        </li>
+      
         <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="#">
-          <i class="fa fa-archive"></i> Profile
+          <a role="menuitem" tabindex="-1" href="{{ url_for('Edit') }}">
+          <i class="fa fa-archive"></i> Edit
           </a>
         </li>
         
@@ -34,12 +40,7 @@
           </a>
         </li>
         
-        <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="{{url_for("Post")}}">
-          <i class='fa fa-plus'></i> New Passage
-          </a>
-        </li>
-      
+       
         <li role="presentation" class="divider"></li>
         <li role="presentation">
          <a role="menuitem" tabindex="-1" href="{{ url_for('SignOut')}}"><i class="fa fa-sign-out"></i>Sign out</a>

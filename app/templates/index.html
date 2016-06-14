@@ -22,9 +22,15 @@
         <span class="caret"></span>
       </button>
       <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+         <li role="presentation">
+          <a role="menuitem" tabindex="-1" href="{{url_for('Post')}}">
+          <i class='fa fa-plus'></i> New Passage
+          </a>
+        </li>
+      
         <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="#">
-          <i class="fa fa-archive"></i> Profile
+          <a role="menuitem" tabindex="-1" href="{{ url_for('Edit') }}">
+          <i class="fa fa-archive"></i> Edit
           </a>
         </li>
         
@@ -34,12 +40,7 @@
           </a>
         </li>
         
-        <li role="presentation">
-          <a role="menuitem" tabindex="-1" href="{{url_for("Post")}}">
-          <i class='fa fa-plus'></i> New Passage
-          </a>
-        </li>
-      
+       
         <li role="presentation" class="divider"></li>
         <li role="presentation">
          <a role="menuitem" tabindex="-1" href="{{ url_for('SignOut')}}"><i class="fa fa-sign-out"></i>Sign out</a>
@@ -89,6 +90,7 @@
     </span>
 {% endif %}
 {% endif %}
+
     <div style = "margin-left:10pt;margin-top:0.5cm;font-size:15pt;">
       <ul class="nav nav-pills" style = "display:inline">
         <li class="active"><a href="{{ url_for('index') }}">Home</a></li>
@@ -99,19 +101,21 @@
 
 
 
-<div style = "margin-left:11cm; margin-top:3cm">
+<div style = "margin-left:12.5cm; margin-top:3cm">
 {% for post in posts %}
   <dl class="dl-horizontal">
   <dt style="text-align:left"><a href="{{ url_for('displayPost', id = post.id) }}"><b style="font-size:13pt">{{post.title}}</b></a></dt>
-  <dd> <span class="text-muted" style="font-size:10pt;vertical-align:bottom">{{post.time}}</span></dd>
+  <dd> <span class="text-muted" style="font-size:10pt;vertical-align:bottom;margin-left:1cm">{{post.time}}</span></dd>
+
 </dl>
 {% endfor %}
 </div>
-
+<div class = "col-md-8 col-md-offset-2">
 {% if display %}
-    <h1>{{title}}</h1>
+    <h1 style="text-align:center">{{title}}</h1>
     {{text|safe}}
 {% endif %}
-
-
+</div>
+<br> <br> <br>
+</body>
 </html>
