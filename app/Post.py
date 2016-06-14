@@ -9,6 +9,33 @@ from config import DATABASE_URI,basedir, admin, adminPassword
 from flask import request
 from flask import session
 
+def getPost(id=0):
+	db = sqlite3.connect(DATABASE_URI)
+	cur = db.cursor()
+	if not id:
+		cur.execute("select * from posts")
+	else:
+		cur.execute("select * from posts where id='%d'" % id)
+	query = cur.fetchall()
+	data=[]
+	for item in query:
+		dicitem={}
+		dicitem['id']= item[0]
+		dicitem['time'] = item[1]
+		dicitem['title'] = item[2]
+		dicitem['visNum'] = item[3]
+		dicitem['content'] = item[4]
+		data.append(dicitem)
+	print data
+	return data
+
+@app.route('/index/article/<int:id>', methods = ['GET', 'POST'])
+def displayPost(id):
+	print id;
+	data = getPost(id)[0]
+	return render_template('index.html',display=True, title=data['title'], text=data['content'])
+
+
 
 def addNewPassage(title, text):
 	db = sqlite3.connect(DATABASE_URI)
@@ -29,3 +56,5 @@ def PostNewPassage():
 	text = request.form['text']
 	addNewPassage(title, text)
 	return "post sucessfully"
+
+

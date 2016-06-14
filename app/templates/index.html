@@ -99,11 +99,19 @@
 
 
 
-<div style = "margin-left:13cm; margin-top:3cm; font-size : 13pt">
+<div style = "margin-left:11cm; margin-top:3cm">
 {% for post in posts %}
-  <div><p>{{post.author.nickname}} says: <b>{{post.body}}</b></p></div>
+  <dl class="dl-horizontal">
+  <dt style="text-align:left"><a href="{{ url_for('displayPost', id = post.id) }}"><b style="font-size:13pt">{{post.title}}</b></a></dt>
+  <dd> <span class="text-muted" style="font-size:10pt;vertical-align:bottom">{{post.time}}</span></dd>
+</dl>
 {% endfor %}
 </div>
+
+{% if display %}
+    <h1>{{title}}</h1>
+    {{text|safe}}
+{% endif %}
 
 
 </html>
