@@ -30,7 +30,7 @@
       
         <li role="presentation">
           <a role="menuitem" tabindex="-1" href="{{ url_for('Edit') }}">
-          <i class="fa fa-archive"></i> Edit
+          <i class="fa fa-pencil"></i> Edit
           </a>
         </li>
         
@@ -110,12 +110,42 @@
 </dl>
 {% endfor %}
 </div>
+
 <div class = "col-md-8 col-md-offset-2">
 {% if display %}
     <h1 style="text-align:center">{{title}}</h1>
     {{text|safe}}
 {% endif %}
+<br>
+<br><br>
+
+{% if comments %}
+<ul class="nav nav-tabs nav-justified">
+   <li class="active"><a href="#">Comments</a></li>
+   <li> </li>
+   <li> </li>
+   <li> </li>
+   <li> </li>
+   <li> </li>
+   <li> </li>
+   <li> </li>
+   {% if session['logged_in'] %}
+   <li style="text-align:right" class="dropdown"> 
+    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+         {{session['user']}} <span class="caret"></span>
+    </a>
+      <ul class="dropdown-menu">
+         <li><a href="#">My comments</a></li>
+         <li><a href="#">New comments</a></li>
+      </ul>
+   </li>
+   {% else %}
+   <li class="divider"> <a href="{{ url_for('SignIn')}}">Sign in to comment!</a></li>
+   {% endif %}
+</ul>
+{% endif %}
+<br><br><br><br><br><br>
 </div>
-<br> <br> <br>
+
 </body>
 </html>

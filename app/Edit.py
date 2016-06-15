@@ -17,13 +17,18 @@ def Edit():
 
 
 @app.route('/admin/edit/delete', methods = ['GET', 'POST'])
-def deletePassage(id=0	):
-	data = getPost(id)
-	db = sqlite3.connect(DATABASE_URI)
-	cur = db.cursor()
-	cur.execute("delete from posts where id = %d" % data[0]['id'])
-	cur.close()
-	db.commit()
-	db.close()
+def deletePassage():
+	flag = request.args.get("flag", 0, type = bool)
+	id = request.args.get("id", 0, type = int)
+	print flag
+	print id
+	if flag:
+		data = getPost(id)
+		db = sqlite3.connect(DATABASE_URI)
+		cur = db.cursor()
+		cur.execute("delete from posts where id = %d" % data[0]['id'])
+		cur.close()
+		db.commit()
+		db.close()
 	return redirect(url_for('Edit'))
 	

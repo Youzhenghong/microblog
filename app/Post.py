@@ -26,14 +26,12 @@ def getPost(id=0):
 		dicitem['visNum'] = item[3]
 		dicitem['content'] = item[4]
 		data.append(dicitem)
-	print data
 	return data
 
 @app.route('/index/article/<int:id>', methods = ['GET', 'POST'])
 def displayPost(id):
-	print id;
 	data = getPost(id)[0]
-	return render_template('index.html',display=True, title=data['title'], text=data['content'])
+	return render_template('index.html',display=True, title=data['title'], text=data['content'], comments = True)
 
 
 
