@@ -9,6 +9,15 @@ from config import DATABASE_URI,basedir, admin, adminPassword
 from flask import request
 from flask import session
 
+def addNewPassage(title, text):
+	db = sqlite3.connect(DATABASE_URI)
+	cur = db.cursor()
+	cur.execute("insert into posts(title, contents, datetime, visNum) values('%s','%s', '%s', '%d');" % (title, text, time.asctime(), 0) ) 
+	cur.close()
+	db.commit()
+	db.close()
+
+
 def getPost(id=0):
 	db = sqlite3.connect(DATABASE_URI)
 	cur = db.cursor()
@@ -28,20 +37,31 @@ def getPost(id=0):
 		data.append(dicitem)
 	return data
 
+def getComment(id = 0):
+	db = sqlite3.connect(DATABASE_URI)
+	cur = db.cursor()
+	print id
+	cur.execute("select * from comments where passageID = %d;" % id)
+	query = cur.fetchall()
+	print "query :" + str(query)
+	data = []
+	for item in query:
+		dicitem={}
+		dicitem['content'] = item[1]
+		dicitem['time'] = item[2]
+		dicitem['user'] = item[3]
+		data.append(dicitem)
+	return data
+
+
 @app.route('/index/article/<int:id>', methods = ['GET', 'POST'])
 def displayPost(id):
 	data = getPost(id)[0]
-	return render_template('index.html',display=True, title=data['title'], text=data['content'], comments = True)
-
-
-
-def addNewPassage(title, text):
-	db = sqlite3.connect(DATABASE_URI)
-	cur = db.cursor()
-	cur.execute("insert into posts(title, contents, datetime, visNum) values('%s','%s','%s', %d)" % (title, text, time.asctime(), 0))
-	cur.close()
-	db.commit()
-	db.close()
+	commentData = getComment(id)
+	print commentData
+	print id
+	print id
+	return render_template('index.html',display=True, title=data['title'], text=data['content'], pid = id,comments = True, allComment = commentData)
 
 
 

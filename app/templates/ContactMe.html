@@ -106,14 +106,19 @@
   	<li><i class="fa fa-github"></i>itHub: <a href="https://github.com/youzhenghong">Youzhenghong</a>
   	<li><i class="fa fa-google"></i>-Mail: <a href="mailto:youzhenghong1995@gmail.com">youzhenghong1995@gmail.com</a>
   	<li><i class="fa fa-facebook"> </i>acebook: <a href="https://www.facebook.com/zhenghongyou">zhenghong you</a>
-  	<li><i class="fa fa-wechat"></i>WeChat: <a href="#">15645040395</a>
+  	<li class="tooltip-options"><i class="fa fa-wechat"></i>WeChat: <a href="#" data-toggle="tooltip"  data-placement="right" title="<img src='/static/img/MyQRCode.jpg' alt='QR Code' width='350' height='500' >My QR Code"> 15645040395</a>
   	<li><i class="fa fa-weibo">Weibo: <a href="http://weibo.com/u/5918903535?refer_flag=1001030102_&is_hot=1">人萌屌大</a></i>
   </ul>
+</div>
 
-
-
-  </div>
-
+<script>
+      $(function () { $('.tooltip-show').tooltip('show');});
+      $(function () { $('.tooltip-hide').tooltip('hide');});
+      $(function () { $('.tooltip-destroy').tooltip('destroy');});
+      $(function () { $('.tooltip-toggle').tooltip('toggle');});
+      $(function () { $(".tooltip-options a").tooltip({html : true });
+      });
+</script>
 
 </body>
 </html>

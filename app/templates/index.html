@@ -135,17 +135,69 @@
          {{session['user']}} <span class="caret"></span>
     </a>
       <ul class="dropdown-menu">
-         <li><a href="#">My comments</a></li>
-         <li><a href="#">New comments</a></li>
+         <li><a href="#"><i class="fa fa-archive"></i> My comments</a></li>
+         <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-plus"></i> New comments</a>  
+          </li>
       </ul>
    </li>
    {% else %}
-   <li class="divider"> <a href="{{ url_for('SignIn')}}">Sign in to comment!</a></li>
+   <li class="divider"> <a href="{{ url_for('SignIn') }}"> Sign in to comment!</a></li>
    {% endif %}
 </ul>
 {% endif %}
+<br>
+{% for comment in allComment %}
+    <div class="panel panel-default">
+   <div class="panel-heading">
+      <h3 class="panel-title">
+         {{comment.user}} says:
+      </h3>
+   </div>
+   <div class="panel-body">
+      <p style="font-size:13pt">{{comment.content}}</p>
+      <p class="text-muted" style="font-size:10pt;vertical-align:bottom;text-align:right">Comment @ {{comment.time}}</p>
+   </div>
+</div>
+{% endfor%}
 <br><br><br><br><br><br>
 </div>
+
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" 
+   aria-labelledby="myModalLabel" aria-hidden="true">
+   <div class="modal-dialog">
+      <div class="modal-content">
+         <div class="modal-header">
+            <button type="button" class="close" 
+               data-dismiss="modal" aria-hidden="true">
+                  &times;
+            </button>
+            <h4 class="modal-title" id="myModalLabel">
+               Comment on this article
+            </h4>
+         </div>
+         <div class="modal-body">
+            <form method="post" role="form" action="{{ url_for('newComment', id = pid, user = session['user']) }}">
+              <div class="form-group">
+                <label for="name">comment</label>
+                  <textarea class="form-control" rows="3" name='comment'></textarea>
+              </div>
+            
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" 
+                data-dismiss="modal">Close
+              </button>
+              <button type="submit" class="btn btn-primary">
+                Submmit
+              </button>
+            </div>
+            </form>
+         </div>
+         
+      </div><!-- /.modal-content -->
+</div><!-- /.modal -->
+</div>
+
 
 </body>
 </html>
